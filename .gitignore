@@ -27,7 +27,7 @@ target/
 *.zip
 *.tar.gz
 *.rar
-
+rebel.xml
 ### Eclipse ###
 .apt_generated
 .classpath

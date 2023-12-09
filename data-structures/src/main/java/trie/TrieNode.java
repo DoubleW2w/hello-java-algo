@@ -15,7 +15,6 @@ public class TrieNode {
      * 字母
      */
     public char c;
-
     /**
      * 单词：数量 > 0 表示一个单词
      */

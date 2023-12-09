@@ -1,5 +1,7 @@
 package trie;
 
+import com.alibaba.fastjson2.JSON;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -61,7 +63,7 @@ public class Trie {
             root = root.slot[idx];
         }
         // 模糊匹配：根据前缀的最后一个单词，递归遍历所有的单词
-        ArrayList<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         if (root.prefix != 0) {
             for (int i = 0; i < root.slot.length; i++) {
                 if (root.slot[i] != null) {
@@ -74,5 +76,29 @@ public class Trie {
             }
         }
         return list;
+    }
+
+    protected void collect(TrieNode trieNode, String pre, List<String> queue, int resultLimit) {
+        // 找到单词
+        if (trieNode.isWord) {
+            trieNode.word = pre;
+            // 保存检索到的单词到 queue
+            queue.add(trieNode.word + " -> " + trieNode.explain);
+            if (queue.size() >= resultLimit) {
+                return;
+            }
+        }
+        // 递归调用，查找单词
+        for (int i = 0; i < trieNode.slot.length; i++) {
+            char c = (char) ('a' + i);
+            if (trieNode.slot[i] != null) {
+                collect(trieNode.slot[i], pre + c, queue, resultLimit);
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Trie：" + JSON.toJSONString(wordsTree);
     }
 }
