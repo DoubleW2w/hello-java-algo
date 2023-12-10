@@ -53,7 +53,7 @@ public class BinarySearchTree extends AbstractTree implements ITree {
         return delete(delNode);
     }
 
-    private Node delete(Node delNode) {
+    protected Node delete(Node delNode) {
         if (delNode == null) {
             return null;
         }
