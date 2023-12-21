@@ -2,6 +2,7 @@ package sort_algo.bubble_sort;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import sort_algo.BaseSortAlgoTest;
 
 /**
  * @author: DoubleW2w
@@ -9,22 +10,14 @@ import org.junit.jupiter.api.Test;
  * @date: 2023/12/21 18:02
  * @project: hello-java-algo
  */
-class BubbleSortTest {
+public class BubbleSortTest extends BaseSortAlgoTest {
 
     @Test
     void testSortOne() {
         int[] a = {20, 40, 30, 10, 60, 50};
-        System.out.println("before sort:");
-        for (int j : a) {
-            System.out.printf("%d ", j);
-        }
-        System.out.println();
+        sortBeforePrint(a);
         BubbleSort.sortOne(a);
-        System.out.println("after   sort:");
-        for (int j : a) {
-            System.out.printf("%d ", j);
-        }
-        System.out.println();
+        sortAfterPrint(a);
         int[] expected = {10,20,30,40,50,60};
         Assertions.assertArrayEquals(expected,a);
     }
@@ -32,16 +25,9 @@ class BubbleSortTest {
     @Test
     void testSortTwo() {
         int[] a = {20, 40, 30, 10, 60, 50};
-        System.out.println("before sort:");
-        for (int j : a) {
-            System.out.printf("%d ", j);
-        }
-        System.out.println();
-        BubbleSort.sortTwo(a);
-        System.out.println("after   sort:");
-        for (int j : a) {
-            System.out.printf("%d ", j);
-        }
+        sortBeforePrint(a);
+        BubbleSort.sortOne(a);
+        sortAfterPrint(a);
         int[] expected = {10,20,30,40,50,60};
         Assertions.assertArrayEquals(expected,a);
     }
