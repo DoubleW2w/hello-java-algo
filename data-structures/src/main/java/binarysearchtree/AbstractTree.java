@@ -54,7 +54,7 @@ public abstract class AbstractTree {
 
         // newRoot 的左子树(如果存在)为 oldRoot 的右子树
         oldRoot.right = newRoot.left;
-        if(newRoot.left != null && newRoot.left != nilNode){
+        if (newRoot.left != null && newRoot.left != nilNode) {
             newRoot.left.parent = oldRoot;
         }
 
@@ -63,12 +63,12 @@ public abstract class AbstractTree {
         oldRoot.parent = newRoot;
 
         // newRoot 替换 oldRoot 的位置
-        if(newRoot.parent == null || newRoot.parent == nilNode){
+        if (newRoot.parent == null || newRoot.parent == nilNode) {
             root = newRoot;
-        }else{
-            if(newRoot.parent.left == oldRoot){
+        } else {
+            if (newRoot.parent.left == oldRoot) {
                 newRoot.parent.left = newRoot;
-            }else{
+            } else {
                 newRoot.parent.right = newRoot;
             }
         }
@@ -104,23 +104,23 @@ public abstract class AbstractTree {
         return newRoot;
     }
 
-        protected Node rotateLeftNew(Node node) {
+    protected Node rotateLeftNew(Node node) {
         Node oldRoot = node;
         Node newRoot = node.right;
         Node parent = node.parent;
 
         // 1.newRoot 替换 oldRoot 位置
-        if(parent != null){
-            if(oldRoot.parent.value > oldRoot.value){
+        if (parent != null) {
+            if (oldRoot.parent.value > oldRoot.value) {
                 parent.left = newRoot;
-            }else{
+            } else {
                 parent.right = newRoot;
             }
         }
         newRoot.parent = parent;
         // 2.重新组装oldRoot（将newRoot的左子树给oldRoot的右子树)
         oldRoot.right = newRoot.left;
-        if(newRoot.left != null){
+        if (newRoot.left != null) {
             newRoot.left.parent = oldRoot;
         }
         // 3. oldRoot为newRoot的左子树
@@ -186,12 +186,12 @@ public abstract class AbstractTree {
         Node newRoot = node.left;
         Node parent = node.parent;
         // 1. newRoot 替换 oldRoot 的位置
-        if(parent == null || parent == nilNode){
+        if (parent == null || parent == nilNode) {
             root = newRoot;
-        }else{
+        } else {
             if (oldRoot.parent.value > oldRoot.value) {
                 parent.left = newRoot;
-            }else {
+            } else {
                 parent.right = newRoot;
             }
         }
@@ -199,7 +199,7 @@ public abstract class AbstractTree {
 
         // 2. 重新组装 oldRoot（将 newRoot 的右子树给 oldRoot 的左子树）
         oldRoot.left = newRoot.right;
-        if (newRoot.right != null  && node.left != nilNode) {
+        if (newRoot.right != null && node.left != nilNode) {
             newRoot.right.parent = oldRoot;
         }
 
@@ -210,8 +210,7 @@ public abstract class AbstractTree {
     }
 
 
-
-        protected String printSubTree(Node node) {
+    protected String printSubTree(Node node) {
         StringBuilder tree = new StringBuilder();
         if (node.right != null) {
             printTree(node.right, true, "", tree);
@@ -251,6 +250,10 @@ public abstract class AbstractTree {
             tree.append(node.value);
             if (root.clazz.equals(AVLTree.class)) {
                 tree.append("(").append(node.height).append(")");
+            } else if (root.clazz.equals(RedBlackTree.class)) {
+                tree.append("(").append(node.color == Node.Color.BLACK
+                                        ? "黑"
+                                        : "红").append(")");
             }
         }
         tree.append("\r\n");

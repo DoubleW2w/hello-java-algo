@@ -13,9 +13,13 @@ public class Node {
     public Node right;
     public Class<?> clazz;
 
-    // AVL 树所需属性
+    /**
+     * AVL树所需属性
+     */
     public int height;
-    // 红黑树所需属性
+    /**
+     * 红黑树所需属性
+     */
     public Color color = Color.RED;
 
     public Node(Class<?> clazz, Integer value, Node parent, Node left, Node right) {
@@ -69,8 +73,17 @@ public class Node {
         }
     }
 
-    // 红黑树枚举
-    enum Color {
-        RED, BLACK
+    /**
+     * 红黑树枚举
+     */
+    public enum Color {
+        /**
+         * 红色
+         */
+        RED,
+        /**
+         * 黑色
+         */
+        BLACK
     }
 }
