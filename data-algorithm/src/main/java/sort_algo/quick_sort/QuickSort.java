@@ -2,6 +2,7 @@ package sort_algo.quick_sort;
 
 import java.util.Arrays;
 
+
 /**
  * @author: DoubleW2w
  * @description: 快速排序
@@ -43,6 +44,61 @@ public class QuickSort {
             quickSort(a, l, i - 1);
             // 右半分区
             quickSort(a, i + 1, r);
+        }
+    }
+
+    public static void quickSortTwo(int[] a,int l,int r){
+        if (l < r) {
+            int i = partition(a, l, r);
+            quickSortTwo(a, l, i - 1);
+            quickSortTwo(a, i + 1, r);
+        }
+    }
+
+    private static int partition(int[] a, int l, int r) {
+        // 基准值
+        int pivot = a[r];
+        // 左指针
+        int i = l - 1;
+        for (int j = l; j < r; j++) {
+            // 从左到右找到第一个小于基准值的元素
+            if (a[j] < pivot) {
+                i++;
+                swap(a, i, j);
+            }
+        }
+
+        swap(a, i + 1, r);
+        return i + 1;
+    }
+
+    private static void swap(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+
+
+
+    public static void quickSort(Integer[] arr, int left, int right) {
+        int l, r, s;
+        while (right > left) {
+            l = left;
+            r = right;
+            s = arr[left];
+            while (l < r) {
+                while (arr[r] > s) {
+                    r--;
+                }
+                arr[l] = arr[r];
+                while ( arr[l] <= s && l < r) {
+                    l++;
+                }
+                arr[r] = arr[l];
+            }
+            arr[l] = s;
+            quickSort(arr, left, l - 1);
+            left = l + 1;
         }
     }
 }
